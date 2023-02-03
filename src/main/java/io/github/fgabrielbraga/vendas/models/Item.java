@@ -15,7 +15,7 @@ public class Item {
     @Column(nullable = false)
     private Integer quantidade;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(nullable = false)
     private Venda venda;
 

@@ -38,6 +38,17 @@ public class ProdutoDTO {
         this.urlFoto = produto.getUrlFoto();
     }
 
+    public static Produto convert(ProdutoDTO produtoDTO) {
+        Produto produto = new Produto();
+        produto.setId(produtoDTO.getId());
+        produto.setCodigo(produtoDTO.getCodigo());
+        produto.setDescricao(produtoDTO.getDescricao());
+        produto.setPreco(produtoDTO.getPreco());
+        produto.setUnidadeMedida(produtoDTO.getUnidadeMedida());
+        produto.setUrlFoto(produtoDTO.getUrlFoto());
+        return produto;
+    }
+
     public Long getId() {
         return id;
     }

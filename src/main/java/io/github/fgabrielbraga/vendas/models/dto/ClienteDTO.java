@@ -1,5 +1,6 @@
 package io.github.fgabrielbraga.vendas.models.dto;
 
+import ch.qos.logback.core.net.server.Client;
 import io.github.fgabrielbraga.vendas.models.Cliente;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -42,8 +43,8 @@ public class ClienteDTO {
     }
 
     public ClienteDTO(Cliente cliente) {
-        this.id = getId();
-        this.nome = getNome();
+        this.id = cliente.getId();
+        this.nome = cliente.getNome();
         this.email = cliente.getEmail();
         this.cpf = cliente.getCpf();
         this.dataNascimento = cliente.getDataNascimento();
@@ -52,6 +53,21 @@ public class ClienteDTO {
         this.numero = cliente.getNumero();
         this.cidade = cliente.getCidade();
         this.estado = cliente.getEstado();
+    }
+
+    public static Cliente convert(ClienteDTO clienteDTO) {
+        Cliente cliente = new Cliente();
+        cliente.setId(clienteDTO.getId());
+        cliente.setNome(clienteDTO.getNome());
+        cliente.setEmail(clienteDTO.getEmail());
+        cliente.setCpf(clienteDTO.getCpf());
+        cliente.setDataNascimento(clienteDTO.getDataNascimento());
+        cliente.setTelefone(clienteDTO.getTelefone());
+        cliente.setLogradouro(clienteDTO.getLogradouro());
+        cliente.setNumero(clienteDTO.getNumero());
+        cliente.setCidade(clienteDTO.getCidade());
+        cliente.setEstado(clienteDTO.getEstado());
+        return cliente;
     }
 
     public Long getId() {

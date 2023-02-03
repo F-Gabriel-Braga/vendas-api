@@ -1,7 +1,8 @@
 package io.github.fgabrielbraga.vendas.controllers;
 
+import io.github.fgabrielbraga.vendas.models.dto.ProdutoDTO;
 import io.github.fgabrielbraga.vendas.services.ProdutoService;
-import io.github.fgabrielbraga.vendas.models.Produto;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,18 +14,28 @@ public class ProdutoController {
     @Autowired
     private ProdutoService produtoService;
 
-    @GetMapping("/produtos")
-    public List<Produto> findAll() {
+    @RequestMapping(value = "/produtos", method = RequestMethod.POST)
+    public ProdutoDTO save(@RequestBody ProdutoDTO dto) {
+        return this.produtoService.save(dto);
+    }
+
+    @RequestMapping(value = "/produtos", method = RequestMethod.GET)
+    public List<ProdutoDTO> findAll() {
         return this.produtoService.findAll();
     }
 
-    @GetMapping("/produtos/{id}")
-    public Produto findById(@PathVariable Long id) {
+    @RequestMapping(value = "/produtos/{id}", method = RequestMethod.GET)
+    public ProdutoDTO findById(@PathVariable Long id) {
         return this.produtoService.findById(id);
     }
 
-    @PostMapping("/produtos")
-    public Produto save(@RequestBody Produto produto) {
-        return this.produtoService.save(produto);
+    @RequestMapping(value = "/produtos/{id}", method = RequestMethod.DELETE)
+    public ProdutoDTO deleteById(@PathVariable Long id) {
+        return this.produtoService.deleteById(id);
+    }
+
+    @RequestMapping(value = "/produtos/{id}", method = RequestMethod.PUT)
+    public ProdutoDTO updateById(@PathVariable Long id, @RequestBody ProdutoDTO dto) {
+        return this.produtoService.updateById(id, dto);
     }
 }

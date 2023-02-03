@@ -1,7 +1,8 @@
 package io.github.fgabrielbraga.vendas.controllers;
 
+import io.github.fgabrielbraga.vendas.models.dto.VendaDTO;
 import io.github.fgabrielbraga.vendas.services.VendaService;
-import io.github.fgabrielbraga.vendas.models.Venda;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,17 +15,17 @@ public class VendaController {
     private VendaService vendaService;
 
     @GetMapping("/vendas")
-    public List<Venda> findAll() {
+    public List<VendaDTO> findAll() {
         return this.vendaService.findAll();
     }
 
     @GetMapping("/vendas/{id}")
-    public Venda findById(@PathVariable Long id) {
+    public VendaDTO findById(@PathVariable Long id) {
         return this.vendaService.findById(id);
     }
 
     @PostMapping("/vendas")
-    public Venda save(@RequestBody Venda venda) {
-        return this.vendaService.save(venda);
+    public VendaDTO save(@RequestBody @Valid VendaDTO dto) {
+        return this.vendaService.save(dto);
     }
 }

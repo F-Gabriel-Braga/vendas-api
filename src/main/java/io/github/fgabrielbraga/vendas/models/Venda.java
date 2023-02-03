@@ -1,6 +1,9 @@
 package io.github.fgabrielbraga.vendas.models;
 
+import io.github.fgabrielbraga.vendas.models.dto.VendaDTO;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Venda {
@@ -15,6 +18,9 @@ public class Venda {
     @ManyToOne
     @JoinColumn(nullable = false)
     private Cliente cliente;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "venda")
+    private List<Item> items;
 
     public Venda() {
     }
@@ -41,5 +47,13 @@ public class Venda {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 }

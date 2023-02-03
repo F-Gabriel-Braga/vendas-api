@@ -1,5 +1,6 @@
 package io.github.fgabrielbraga.vendas.models;
 
+import io.github.fgabrielbraga.vendas.models.dto.ClienteDTO;
 import jakarta.persistence.*;
 
 @Entity
@@ -37,6 +38,10 @@ public class Cliente {
     private String estado;
 
     public Cliente() {
+    }
+
+    public Cliente(Long id) {
+        this.id = id;
     }
 
     public Long getId() {
