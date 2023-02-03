@@ -14,9 +14,9 @@ public class VendaController {
     @Autowired
     private VendaService vendaService;
 
-    @GetMapping("/vendas")
-    public List<VendaDTO> findAll() {
-        return this.vendaService.findAll();
+    @GetMapping("/vendas/cliente/{idCliente}")
+    public List<VendaDTO> findAll(@PathVariable Long idCliente) {
+        return this.vendaService.findByCliente(idCliente);
     }
 
     @GetMapping("/vendas/{id}")

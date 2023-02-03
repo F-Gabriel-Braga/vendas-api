@@ -15,7 +15,7 @@ public class ProdutoController {
     private ProdutoService produtoService;
 
     @RequestMapping(value = "/produtos", method = RequestMethod.POST)
-    public ProdutoDTO save(@RequestBody ProdutoDTO dto) {
+    public ProdutoDTO save(@RequestBody @Valid ProdutoDTO dto) {
         return this.produtoService.save(dto);
     }
 
@@ -35,7 +35,7 @@ public class ProdutoController {
     }
 
     @RequestMapping(value = "/produtos/{id}", method = RequestMethod.PUT)
-    public ProdutoDTO updateById(@PathVariable Long id, @RequestBody ProdutoDTO dto) {
+    public ProdutoDTO updateById(@PathVariable Long id, @RequestBody @Valid ProdutoDTO dto) {
         return this.produtoService.updateById(id, dto);
     }
 }

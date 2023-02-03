@@ -35,7 +35,7 @@ public class ClienteController {
     }
 
     @PutMapping("/clientes/{id}")
-    public ClienteDTO updateById(@PathVariable Long id, @RequestBody ClienteDTO dto) {
+    public ClienteDTO updateById(@PathVariable Long id, @RequestBody @Valid ClienteDTO dto) {
         return this.clienteService.updateById(id, dto);
     }
 }

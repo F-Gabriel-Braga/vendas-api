@@ -20,8 +20,8 @@ public class VendaService {
     @Autowired
     private ClienteRepository clienteRepository;
 
-    public List<VendaDTO> findAll() {
-        List<Venda> vendas = this.vendaRepository.findAll();
+    public List<VendaDTO> findByCliente(Long idCliente) {
+        List<Venda> vendas = this.vendaRepository.findByCliente(idCliente);
         List<VendaDTO> vendasDTO = vendas.stream().map(VendaDTO::new).collect(Collectors.toList());
         return vendasDTO;
     }
